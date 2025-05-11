@@ -1,25 +1,20 @@
 import os
 import openai
-import time
 import random
 import json
-import requests
-import warnings
+import pinecone
 
 from civrealm.freeciv.utils.freeciv_logging import fc_logger
 from .utils import num_tokens_from_messages, extract_json, TOKEN_LIMIT_TABLE
-from langchain.chat_models import ChatOpenAI, AzureChatOpenAI
-from langchain.chains import ConversationChain
+from langchain_community.chat_models import ChatOpenAI, AzureChatOpenAI
 from langchain.memory import ConversationSummaryBufferMemory
 
-import pinecone
-from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.vectorstores import Pinecone
-from langchain.llms import OpenAI, AzureOpenAI
+from langchain_community.embeddings.openai import OpenAIEmbeddings
+from langchain_community.vectorstores import Pinecone
+from langchain_community.llms import OpenAI, AzureOpenAI
 from langchain.chains.question_answering import load_qa_chain
 from agent_manager.agents.civ_agent.prompt_handlers.base_prompt_handler import BasePromptHandler
 
-warnings.filterwarnings('ignore')
 
 cwd = os.getcwd()
 OPENAI_KEYS_FILE = os.path.join(cwd, "agents/civ_autogpt/openai_keys.txt")

@@ -16,21 +16,10 @@
 import os
 import random
 import json
-import time
-from langchain.schema import SystemMessage, HumanMessage, AIMessage
-import openai
 import pinecone
 
-from langchain.chat_models import ChatOpenAI, AzureChatOpenAI
-from langchain.chains import ConversationChain
-from langchain.memory import ConversationSummaryBufferMemory
-
-from langchain.document_loaders import DirectoryLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.vectorstores import Pinecone
-from langchain.llms import OpenAI, AzureOpenAI
-from langchain.chains.question_answering import load_qa_chain
+from langchain_community.embeddings.openai import OpenAIEmbeddings
+from langchain_community.vectorstores import Pinecone
 
 from civrealm.freeciv.utils.freeciv_logging import fc_logger
 from agent_manager.agents.civ_agent.prompt_handlers.base_prompt_handler import BasePromptHandler

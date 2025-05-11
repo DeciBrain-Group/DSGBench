@@ -21,7 +21,7 @@ from typing import Callable
 import weave
 from langchain.chains.combine_documents.base import BaseCombineDocumentsChain
 from langchain.memory import ConversationSummaryBufferMemory
-from langchain.vectorstores import Pinecone
+from langchain_community.vectorstores import Pinecone
 
 from civrealm.freeciv.utils.freeciv_logging import fc_logger
 from ..civ_autogpt.utils import num_tokens_from_messages, extract_json, TOKEN_LIMIT_TABLE

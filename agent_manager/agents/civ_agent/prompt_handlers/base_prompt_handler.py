@@ -22,7 +22,7 @@ import re
 import copy
 from civrealm.freeciv.utils.freeciv_logging import fc_logger
 
-print("os.getcwd(=========",os.getcwd())
+# print("os.getcwd(=========",os.getcwd())
 PROMPT_ROOT_DIR = "./agent_manager/prompts/civ_prompt_collections/"
 BASE_DIR = "base_prompts/"
 

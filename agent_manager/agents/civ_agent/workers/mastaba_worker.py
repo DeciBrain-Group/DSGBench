@@ -16,11 +16,11 @@ import pinecone
 import weave
 
 from .gpt_worker import AzureGPTWorker
-from langchain.chat_models import ChatOpenAI, AzureChatOpenAI
-from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain_community.chat_models import ChatOpenAI, AzureChatOpenAI
+from langchain_community.embeddings.openai import OpenAIEmbeddings
 from langchain.memory import ConversationSummaryBufferMemory
 from langchain.chains.question_answering import load_qa_chain
-from langchain.vectorstores import Pinecone
+from langchain_community.vectorstores import Pinecone
 class MastabaWorker(AzureGPTWorker):
     def __init__(self,args,llm,role="controller", **kwargs):
         self.args=args

@@ -2,6 +2,8 @@ import os
 from datetime import datetime
 import multiprocessing
 
+import warnings
+warnings.filterwarnings("ignore")
 import wandb
 import weave
 import yaml
@@ -83,30 +85,31 @@ class TaskMultiEval(object):
         match_idx=next_runs_num
         error_times=0
         while match_idx<=self.args.eval.num_matches:
-            try:
-                print("beginning match:",match_idx)
-                self.task_reset(match_idx)
-                self.agent_eval.play()
-                eval_ret = self.agent_eval.get_eval_result()
-                print("~~~~~~~~~~~~~~~~~~~~~~~")
-                print(eval_ret)
-                print("~~~~~~~~~~~~~~~~~~~~~~~")
-                ret_all.append(eval_ret)
-                if len(ret_all) >= 1:
-                    self.calc_eval_ret(ret_all)
-                self.agent_eval.close()
-                match_idx+=1
-                error_times=0
-            except Exception as e:
-                self.logger.info(f"error:{e}")
-                print(e)
-                error_times+=1
-                print("keep error times:",error_times)
-                if error_times>5:
-                    match_idx+=1
-                    error_times=0
-                    print("keep error times reach 5 times, go to the next match: ",match_idx)
-                continue
+            # try:
+            print("beginning match:",match_idx)
+            self.task_reset(match_idx)
+            self.agent_eval.play()
+            eval_ret = self.agent_eval.get_eval_result()
+            print("~~~~~~~~~~~~~~~~~~~~~~~")
+            print(eval_ret)
+            print("~~~~~~~~~~~~~~~~~~~~~~~")
+            ret_all.append(eval_ret)
+            if len(ret_all) >= 1:
+                self.calc_eval_ret(ret_all)
+            self.agent_eval.close()
+            match_idx+=1
+            error_times=0
+            # except Exception as e:
+            #     self.logger.info(f"error:{e}")
+            #     print(e)
+            #     error_times+=1
+            #     print("keep error times:",error_times)
+            #     if error_times>5:
+            #         match_idx+=1
+            #         error_times=0
+            #         print("keep error times reach 5 times, go to the next match: ",match_idx)
+            #     continue
+
 
 
     def calc_eval_ret(self, ret_all,store=True):
@@ -262,7 +265,7 @@ def one_task_eval(task,runs_log_path):
     record_runs(task, runs_log_path)
 
 
-def mutil_process_task_run():
+def multi_process_task_run():
     comm_args = parse_args()
     cur_time=datetime.now().strftime('%Y%m%d_%H%M%S')
     runs_log_path=comm_args.runs_log_path[:-4]+"_"+cur_time+".txt"
@@ -288,4 +291,4 @@ def mutil_process_task_run():
 
 if __name__ == '__main__':
 
-    mutil_process_task_run()
+    multi_process_task_run()

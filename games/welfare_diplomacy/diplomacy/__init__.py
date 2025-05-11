@@ -45,4 +45,3 @@ if 'DIPLOMACY_LOG_FILE' in os.environ:
     LOG_FILE_FORMATTER = logging.Formatter(fmt='%(asctime)s %(name)s[%(process)d] %(levelname)s %(message)s')
     FILE_HANDLER.setFormatter(LOG_FILE_FORMATTER)
     ROOT.addHandler(FILE_HANDLER)
-print("=======")

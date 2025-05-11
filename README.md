@@ -19,6 +19,10 @@
   📄 <a href="https://arxiv.org/abs/2503.06047" target="_blank">Paper</a> • 🌍 <a href="https://fateyetian.github.io/DSGBench/" target="_blank">Project Page</a> • 🎮 <a href="https://decibrain-group.github.io/GameWiki/" target="_blank">Game Wiki</a> • 💻 <a href="https://github.com/DeciBrain-Group/DSGBench" target="_blank">Code</a><br>
 </p>
 
+## 🔥 News & Updates
+
+- **[2026.05]** 🚀 **DSGBench++** is on the way! *A Closed-Loop Infrastructure for Agentic Strategic Decision-Making* — integrating Evaluation, Trajectory Collection, and RL Training into a unified agentic loop. *"In the agentic era, true intelligence is forged not in isolated tests, but in the continuous loop of decision, feedback, and growth."*
+
 ## 📖 Introduction
 
 DSGBench is a novel strategic game benchmark designed to evaluate the performance of LLM-based agents in strategic planning, real-time decision making, adaptability, and multi-agent interactions. The benchmark encompasses six high-dynamics, complex strategy games, including *StarCraft II*, *Civilization*, *Street Fighter III*, and others. It provides fine-grained metrics for comprehensive evaluation, along with detailed decision trajectory analysis and trajectory datasets.
@@ -69,7 +73,7 @@ close(): Closes the game environment
 
 [`create_yaml.py`](create_yaml.py): This script generates specific configurations for multiple LLMs based on the basic configuration under [`configs/eval_config_base`](./configs/eval_config_base).
 
-[`mutiprocess_eval_tasks.py`](mutiprocess_eval_tasks.py): the running script for the evaluation
+[`multiprocess_eval_tasks.py`](multiprocess_eval_tasks.py): the running script for the evaluation
 
 
 
@@ -80,7 +84,7 @@ close(): Closes the game environment
 - [🎮 Step 2: Game Setup](#step-2-game-setup)
 - [🔧 Step 3: Configuration](#step-3-configuration)
 - [🏃‍♂️ Step 4: Configure & Run Tasks](#step-4-configure-and-run-tasks)
-- [📊 Step 5. Calculate model ability score](#step-5-calculate-model-ability-score)
+- [🏃 Step 5: Run Evaluation Tasks](#step-5-run-evaluation-tasks)
 
 ### Step 1: Prerequisites
 
@@ -233,21 +237,23 @@ game:
 Once your tasks are configured, you can start running them with the following command:
 
 ```shell
-diambra run --images.no-pull -r [absolute roms path of street fight III] python mutiprocess_eval_tasks.py
+diambra run --images.no-pull -r [absolute roms path of street fight III] python multiprocess_eval_tasks.py
 # example
-# diambra run --images.no-pull -r D:\ubuntu\jinxin_work\Agent_Eval\llm-colosseum-main\llm-colosseum-main\roms python mutiprocess_eval_tasks.py
+# diambra run --images.no-pull -r D:\ubuntu\jinxin_work\Agent_Eval\llm-colosseum-main\llm-colosseum-main\roms python multiprocess_eval_tasks.py
 ```
 >**Note:** This command executes the evaluation tasks with the necessary ROMs for the game **Street Fighter III**. Make sure to replace `[absolute roms path of street fight III]` with the actual path to your ROMs directory.  
 >  
 > The `run` command will execute **all** the tasks configured in the `tasks_config.py` file, not just a single task. The reason the command starts with `diambra run` is due to compatibility with **Street Fighter III**, which requires this command structure. Make sure to configure your tasks properly before running.
 
 
-### Step 5. Calculate model ability score
-After completing the tasks, you can calculate the model's ability score by running the following command:
+### Step 5: Run Evaluation Tasks
 ```shell
-# install dsgbench model ability calculation library
-pip install dsgbench-ability-calc==0.1.0
-python calc_score.py
+# After opening CMD window
+activate dsgbench
+cd C:\deploy\DSGBench
+
+# Run tasks
+python multiprocess_eval_tasks.py
 ```
 
 ## 🚀 Start with docker compose
@@ -298,9 +304,6 @@ cd C:\deploy\DSGBench
 
 # Run tasks
 python multiprocess_eval_tasks.py
-
-# Calculate model ability score
-python calc_score.py
 ```
 
 ## 🗂️ Result Structure
